@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Car_Rental_App.Models.Car>
+@inject SignInManager<Customer> signInManager;
+
+@{
+    ViewData["Title"] = "Car List";
+}
+
+<h1>Cars </h1>
+
+<div class="card-deck grid-container">
+    @foreach (var car in Model)
+    {
+        var photoPath = "~/Images/" + (car.PhotoPath ?? );
+        <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+            
+            <div class="card-header">
+                <h3>@Html.DisplayFor(modelItem => car.CarName)</h3>
+            </div>
+
+            <img class="card-img-top" src>
+            <div class="card-body text-center">
+                <p>Author : @Html.DisplayFor(modelItem => car.AuthorName)</p>
+                @if (car.Quantity > 0)
+                {
+                    <p>Quantity : @Html.DisplayFor(modelItem => car.Quantity)</p>
+                }
+                else
+                {
+                    <p class="text-danger">NOT AVAILABLE</p>
+                }
+                <p>Price : ₹@Html.DisplayFor(modelItem => car.Price)</p>
+                <p>Pages : @Html.DisplayFor(modelItem => car.NoOfPages)</p>
+                <p>Genre : @Html.DisplayFor(modelItem => car.Genre)</p>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="book" asp-action="Details" asp-route-id="@car.CarId" class="btn btn-primary m-1">View</a>
+            </div>
+        </div>
+    }
+</div>
