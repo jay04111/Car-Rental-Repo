@@ -1,0 +1,95 @@
+﻿@model CarEditViewModel
+
+@{
+    ViewData["Title"] = "Edit Car";
+    var photoPath = "~/Images/" + (Model.ExistingPhotoPath ?? "default_car.png");
+}
+<div class="d-inline-flex">
+    <h4 class="mr-4">Create Car Record</h4>
+    <div class="ml-2 mr-1">
+        <a asp-controller="car" style="width:auto" asp-action="index" class="btn btn-primary">Back to list</a>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" asp-action="edit" asp-controller="Car" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input hidden asp-for="Id">
+            <input hidden asp-for="ExistingPhotoPath">
+            <div class="form-group">
+                <label asp-for="CarName" class="control-label"></label>
+                <input asp-for="CarName" class="form-control" />
+                <span asp-validation-for="CarName" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Color" class="control-label"></label>
+                    <input asp-for="Color" class="form-control" />
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Seats" class="control-label"></label>
+                    <input asp-for="Seats" class="form-control" />
+                    <span asp-validation-for="Seats" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <select asp-for="Category" class="form-control"
+                        asp-items="Html.GetEnumSelectList<Category>()">
+                    <option value="">Please Select</option>
+                </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="VIN" class="control-label"></label>
+                    <input asp-for="VIN" class="form-control" />
+                    <span asp-validation-for="VIN" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="CarDescription" class="control-label"></label>
+                    <input asp-for="CarDescription" class="form-control" />
+                    <span asp-validation-for="CarDescription" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarModel" class="control-label"></label>
+                <input asp-for="CarModel" class="form-control" />
+                <span asp-validation-for="CarModel" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" accept="image/*" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+                <label>Click here to change photo</label>
+            </div>
+
+            <div class="form-group row col-sm-4 offset-4">
+                <img class="imageThumbnail" src="@photoPath" asp-append-version="true" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a asp-controller="car" asp-action="index" class="btn btn-primary">Cancel</a>
+            </div>
+            @section Scripts{
+                <script>
+                    $(document).ready(function () {
+                        $('.custom-file-input').on("change", function () {
+                            var fileName = $(this).val().split("\\").pop();
+                            $(this).next('.custom-file-label').html(fileName);
+                        });
+                    })
+                </script>
+            }
+        </form>
+    </div>
+</div>

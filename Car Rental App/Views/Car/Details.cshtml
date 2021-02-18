@@ -1,0 +1,69 @@
+﻿@model Car_Rental_App.Models.Car
+
+@{
+    ViewData["Title"] = "Car details";
+    var photoPath = "~/Images/" + (Model.PhotoPath ?? "default_car.png");
+}
+
+<div class="d-inline-flex">
+    <h4 class="mr-4">Car Details</h4>
+    <div class="ml-2 mr-1">
+        <a asp-controller="car" style="width:auto" asp-action="index" class="btn btn-primary">Back to list</a>
+    </div>
+</div>
+<div>
+    <hr />
+    <div class="form-group row col-sm-4 offset-4">
+        <img class="imageThumbnail" src="@photoPath" asp-append-version="true" />
+    </div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Seats)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Seats)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.VIN)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.VIN)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarDescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CarModel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CarModel)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+    </dl>
+</div>
